@@ -1,14 +1,20 @@
 <script setup>
+import { RouterLink, RouterView } from 'vue-router'
+import supabase from './api/client'
+import { useAuthStore } from './stores/authStore'
 import Title from './components/Title.vue'
+
+const authStore = useAuthStore()
 </script>
 
 <template>
-    <nav class="mb-4">
-      <router-link to="/" class="mr-4">Home</router-link>
-      <router-link to="/admin" class="mr-4">Admin</router-link>
-      <router-link to="/sign-in">Sign In</router-link>
-    </nav>
-  <router-view />
+  <nav class="mb-4">
+    <RouterLink to="/" class="mr-4">Home</RouterLink>
+    <RouterLink to="/admin" class="mr-4">Admin</RouterLink>
+    <button @click="authStore.signOut" class="mr-4" v-if="authStore.isLoggedIn">Sign Out</button>
+    <RouterLink to="/sign-in" v-else>Sign In</RouterLink>
+  </nav>
+  <RouterView />
 </template>
 
 <style scoped>

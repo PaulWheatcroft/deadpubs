@@ -1,19 +1,12 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { createClient } from '@supabase/supabase-js'
+import supabase from '../api/client'
+
 import Establishment from './Establishment.vue'
 
 defineProps({
   msg: String,
 })
-
-const supabaseUrl = import.meta.env.VITE_SUPERBASE_URL
-const supabaseKey = import.meta.env.VITE_SUPERBASE_KEY
-
-console.log(supabaseUrl, supabaseKey)
-
-const supabase = createClient(supabaseUrl, supabaseKey)
-
 
 const establishments = ref(null)
 

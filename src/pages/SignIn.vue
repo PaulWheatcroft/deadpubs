@@ -1,12 +1,16 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import supabase from '../api/client'
 import Title from '../components/Title.vue'
+
+const router = useRouter()
 
 let user = ref({
     email: '',
     password: '',
 })
+
 
 async function login() {
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -14,11 +18,11 @@ async function login() {
         password: user.value.password,
     })
     if (data) {
-        console.log("You logged in")
         user.value = {
             email: '',
             password: '',
         }
+        router.push({ name: 'Home' })
     }
     if (error)
         console.error(error)

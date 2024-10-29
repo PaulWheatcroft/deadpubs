@@ -8,6 +8,5 @@ import Establishments from '../components/Establishments.vue'
     <div>
         <Title msg="The DPF" />
     </div>
-
     <Establishments />
 </template>

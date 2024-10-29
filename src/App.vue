@@ -10,7 +10,7 @@ const authStore = useAuthStore()
 <template>
   <nav class="mb-4">
     <RouterLink to="/" class="mr-4">Home</RouterLink>
-    <RouterLink to="/admin" class="mr-4">Admin</RouterLink>
+    <RouterLink to="/admin" class="mr-4" v-if="authStore.isLoggedIn">Admin</RouterLink>
     <button @click="authStore.signOut" class="mr-4" v-if="authStore.isLoggedIn">Sign Out</button>
     <RouterLink to="/sign-in" v-else>Sign In</RouterLink>
   </nav>

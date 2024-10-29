@@ -1,8 +1,11 @@
 <script setup>
 import { ref } from 'vue'
 import supabase from '../api/client'
+import { useFlashStore } from '../stores/flashStore'
 
 import Title from '../components/Title.vue'
+
+const flashStore = useFlashStore()
 
 const establishment = ref({
   name: '',
@@ -17,26 +20,29 @@ const establishment = ref({
 })
 
 async function addEstablishment() {
-  const { data, error } = await supabase
+  const response = await supabase
     .from('establishment')
     .insert([establishment.value])
 
-  if (data) {
-    console.log('Establishment added successfully!')
-    establishment.value = {
-      name: '',
-      street: '',
-      city: '',
-      county: '',
-      postcode: '',
-      ambience_score: 0,
-      drinks_score: 0,
-      interiors_score: 0,
-      dpf_score: 0,
+    console.log(response)
+
+    if (response.status === 201) {
+        flashStore.setFlash('Establishment added successfully!', 'success')
+        console.log('Establishment added successfully!')
+        establishment.value = {
+        name: '',
+        street: '',
+        city: '',
+        county: '',
+        postcode: '',
+        ambience_score: 0,
+        drinks_score: 0,
+        interiors_score: 0,
+        dpf_score: 0,
     }
-  } else {
-    console.error(error)
-  }
+    } else {
+        console.error("*****", response.error)
+    }
 }
 </script>
 
@@ -67,21 +73,36 @@ async function addEstablishment() {
                 <label for="postcode" class="block text-gray-700 text-sm font-bold mb-2">Postcode:</label>
                 <input type="text" id="postcode" v-model="establishment.postcode" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
-            <div class="mb-4">
-                <label for="ambience_score" class="block text-gray-700 text-sm font-bold mb-2">Ambience Score:</label>
-                <input type="number" id="ambience_score" v-model="establishment.ambience_score" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-            </div>
-            <div class="mb-4">
-                <label for="drinks_score" class="block text-gray-700 text-sm font-bold mb-2">Drinks Score:</label>
-                <input type="number" id="drinks_score" v-model="establishment.drinks_score" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-            </div>
-            <div class="mb-4">
-                <label for="interiors_score" class="block text-gray-700 text-sm font-bold mb-2">Interiors Score:</label>
-                <input type="number" id="interiors_score" v-model="establishment.interiors_score" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-            </div>
-            <div class="mb-4">
-                <label for="dpf_score" class="block text-gray-700 text-sm font-bold mb-2">DPF Score:</label>
-                <input type="number" id="dpf_score" v-model="establishment.dpf_score" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <div class="grid grid-cols-4 gap-4 mb-4">
+
+                <div class="col-span-1">
+                    <label for="ambience_score" class="block text-gray-700 text-sm font-bold mb-2">Ambience Score:</label>
+                    <select id="ambience_score" v-model="establishment.ambience_score" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option v-for="i in 10" :key="i" :value="i">{{ i }}</option>
+                    </select>
+                </div>
+
+                <div class="col-span-1">
+                    <label for="drinks_score" class="block text-gray-700 text-sm font-bold mb-2">Drinks Score:</label>
+                    <select id="drinks_score" v-model="establishment.drinks_score" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option v-for="i in 10" :key="i" :value="i">{{ i }}</option>
+                    </select>
+                </div>
+
+                <div class="col-span-1">
+                    <label for="interiors_score" class="block text-gray-700 text-sm font-bold mb-2">Interiors Score:</label>
+                    <select id="interiors_score" v-model="establishment.interiors_score" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option v-for="i in 10" :key="i" :value="i">{{ i }}</option>
+                    </select>
+                </div>
+
+                <div class="col-span-1">
+                    <label for="dpf_score" class="block text-gray-700 text-sm font-bold mb-2">The DPF Score:</label>
+                    <select id="dpf_score" v-model="establishment.dpf_score" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option v-for="i in 10" :key="i" :value="i">{{ i }}</option>
+                    </select>
+                </div>
+
             </div>
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add Establishment</button>
         </form>

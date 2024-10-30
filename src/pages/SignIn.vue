@@ -2,7 +2,10 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import supabase from '../api/client'
+import { useFlashStore } from '../stores/flashStore'
 import Title from '../components/Title.vue'
+
+const flashStore = useFlashStore()
 
 const router = useRouter()
 
@@ -17,15 +20,17 @@ async function login() {
         email: user.value.email,
         password: user.value.password,
     })
-    if (data) {
+
+    if (error) {
+        flashStore.setFlash(`${error.message}`, 'error')
+    } else if (data) {
         user.value = {
             email: '',
             password: '',
         }
+        flashStore.setFlash('You have logged in successfully!', 'success')
         router.push({ name: 'Home' })
     }
-    if (error)
-        console.error(error)
 }
 
 async function seeCurrentUser() {

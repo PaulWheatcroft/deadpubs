@@ -41,8 +41,13 @@ async function addEstablishment() {
         dpf_score: 0,
     }
     } else {
+        flashStore.setFlash('Establishment was not added', 'error')
         console.error("*****", response.error)
     }
+}
+
+function showSuccessMessage() {
+  flashStore.setFlash('Operation was successful!', 'success')
 }
 </script>
 

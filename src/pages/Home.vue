@@ -6,7 +6,7 @@ import Establishments from '../components/Establishments.vue'
 
 <template>
     <div>
-        <Title msg="The DPF" />
+        <Title msg="DEADPUBS" />
     </div>
     <Establishments />
 </template>

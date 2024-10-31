@@ -7,36 +7,55 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="p-4 bg-white rounded-lg shadow-md max-w-3xl mx-auto mb-4">
+  <div class="p-4 bg-gray-600 max-w-3xl mx-auto mb-4 text-center establishment-container">
     <!-- Card for each establishment -->
-    <h3 class="text-xl font-semibold mb-2">{{ establishment.name }}</h3>
-    <ul class="mb-4 text-gray-600">
-      <li>{{ establishment.street }}</li>
-      <li>{{ establishment.city }}</li>
-      <li v-if="establishment.county">{{ establishment.county }}</li>
-      <li>{{ establishment.postcode }}</li>
+    <h2 class="text-xl font-semibold dpf-font-style">{{ establishment.name }}</h2>
+    <ul class="mb-4">
+      <li class="text-sm text-gray-300">
+        {{ establishment.street + ", " + establishment.city }}<span v-if="establishment.county">, {{ establishment.county }}</span>
+      </li>
+      <li class="font-bold text-lg dpf-font-style">{{ establishment.postcode }}</li>
     </ul>
 
     <!-- Scores in a 2x2 grid (quadrants) -->
-    <div class="grid grid-cols-2 gap-4 p-4 bg-gray-100 rounded-lg">
-      <div class="flex items-center justify-center p-4 bg-gray-200 rounded-lg">
-        <span class="text-xl font-bold">{{ establishment.interiors_score }}</span>
-        <p class="ml-2">Interior</p>
-      </div>
-      <div class="flex items-center justify-center p-4 bg-gray-200 rounded-lg">
-        <span class="text-xl font-bold">{{ establishment.ambience_score }}</span>
-        <p class="ml-2">Ambience</p>
-      </div>
-      <div class="flex items-center justify-center p-4 bg-gray-200 rounded-lg">
-        <span class="text-xl font-bold">{{ establishment.drinks_score }}</span>
-        <p class="ml-2">Drinks</p>
-      </div>
-      <div class="flex items-center justify-center p-4 bg-gray-200 rounded-lg">
-        <span class="text-xl font-bold">{{ establishment.dpf_score }}</span>
-        <p class="ml-2">DPF</p>
-      </div>
+    <div class="grid grid-cols-2 gap-1">
+        <div class="flex items-center justify-center">
+            <p class="">Ambiencé: {{ establishment.ambience_score }}</p>
+        </div>
+        <div class="flex items-center justify-center">
+            <p class="">Drinks: {{ establishment.drinks_score }}</p>
+        </div>
+            <div class="flex items-center justify-center">
+            <p class="">Interiors: {{ establishment.interiors_score }}</p>
+        </div>
+        <div class="flex items-center justify-center">
+            <p class="">DPF: {{ establishment.dpf_score }}</p>
+        </div>
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+p {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: rgb(228, 199, 56);
+}
+.dpf-font-style {
+    font-family: "Orelega One", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-style: italic;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    color: rgb(228, 199, 56);
+}
+.establishment-container {
+    border: 2px solid rgb(228, 199, 56);
+    border-radius: 10px;
+}
+.deadpubs-yellow {
+    color: rgb(228, 199, 56);
+}
+</style>

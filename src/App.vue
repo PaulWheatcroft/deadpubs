@@ -12,9 +12,14 @@ const authStore = useAuthStore()
 <template>
   <FlashMessagesWrapper />
   <Navigation :isLoggedIn="authStore.isLoggedIn" />
-  <RouterView />
+  <main class="main-content">
+    <RouterView />
+  </main>
 </template>
 
 <style scoped>
+.main-content {
+    padding-top: 50px;
+}
 
 </style>

@@ -58,4 +58,20 @@ p {
 .deadpubs-yellow {
     color: rgb(228, 199, 56);
 }
+.total-score {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    padding-top: 33px;
+    position:relative;
+    line-height: 17px;
+    top: -80px;
+    right: -80%;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: rgb(228, 199, 56);
+    background-color: brown;
+    border: 2px solid rgb(228, 199, 56);
+}
 </style>

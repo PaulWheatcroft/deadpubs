@@ -3,12 +3,13 @@ import { Establishment } from '../types/establishment'
 import { RouterLink, RouterView } from 'vue-router'
 
 const props = defineProps<{
-  establishment: Establishment
+  establishment: Establishment,
+  isLoggedIn: Boolean,
 }>()
 </script>
 
 <template>
-  <div class="p-4 bg-gray-600 max-w-3xl mx-auto mb-4 text-center establishment-container">
+  <div class="p-4 bg-gray-600 max-w-xs sm:max-w-md md:max-w-3xl mx-auto mb-4 text-center establishment-container">
     <!-- Card for each establishment -->
     <h2 class="text-xl font-semibold dpf-font-style">{{ establishment.name }}</h2>
     <ul class="mb-4">
@@ -33,7 +34,7 @@ const props = defineProps<{
             <p class="">DPF: {{ establishment.dpf_score }}</p>
         </div>
     </div>
-    <div>
+    <div v-if="isLoggedIn">
       <RouterLink :to="`/admin/${establishment.id}/edit`" class="p-2 bg-orange-400 text-gray-700 rounded md:hover:underline sm:min-w-[200px]"><i class="fa-solid fa-square-pen"></i> Edit</RouterLink>
     </div>
   </div>

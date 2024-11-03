@@ -11,7 +11,7 @@ defineProps({
 </script>
 
 <template>
-    <nav class="mb-4 navbar bg-gray-400">
+    <nav class="mb-4 navbar bg-rose-950">
         <RouterLink to="/" class="mr-4">Home</RouterLink>
         <RouterLink to="/admin" class="mr-4" v-if="isLoggedIn">Admin</RouterLink>
         <button @click="authStore.signOut" class="mr-4" v-if="isLoggedIn">SIGN OUT</button>
@@ -28,6 +28,7 @@ nav {
     font-size: 1.2rem;
     font-weight: bold;
     text-transform: uppercase;
+    color: rgb(228, 199, 56);
 }
 
 .navbar {
@@ -38,5 +39,6 @@ nav {
     z-index: 1000; /* Ensure the nav stays above other content */
     padding: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for style */
+    border-bottom: 1px solid rgb(228, 199, 56);
 }
 </style>

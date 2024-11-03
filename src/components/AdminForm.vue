@@ -74,7 +74,7 @@ if (establishmentId) {
 
 <template>
     <div>
-        <form @submit.prevent="handleFormSubmit" class="max-w-lg mx-auto p-4 bg-gray-600 rounded shadow-md admin-container">
+        <form @submit.prevent="handleFormSubmit" class="max-w-xs sm:max-w-md md:max-w-3xl mx-auto p-4 bg-gray-600 rounded shadow-md admin-container">
             <h2 class="text-lg font-bold mb-4 deadpubs-yellow">Add Establishment</h2>
             <div class="mb-4">
                 <label for="name" class="block text-sm font-bold mb-2">Name:</label>
@@ -127,7 +127,7 @@ if (establishmentId) {
                 </div>
 
             </div>
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add Establishment</button>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{ establishmentId ? 'Update' : 'Submit' }}</button>
         </form>
     </div>
 </template>

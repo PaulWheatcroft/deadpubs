@@ -44,7 +44,7 @@ async function seeCurrentUser() {
         <Title msg="Sign In" />
     </div>
     <div>
-        <form @submit.prevent="login" class="max-w-md mx-auto p-4 signin-container bg-gray-600">
+        <form @submit.prevent="login" class="max-w-md mx-auto p-4 signin-container bg-gray-600 ml-2 mr-2">
             <h2 class="text-lg font-bold mb-4">Login</h2>
             <div class="mb-4">
                 <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>

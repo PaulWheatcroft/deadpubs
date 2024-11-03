@@ -1,9 +1,16 @@
 <script setup>
-import { ref } from 'vue'
-import supabase from '../api/client'
+import { ref, onMounted, defineProps } from 'vue'
+import { addEstablishment, getEstablishment, updateEstablishment } from '../api/establishmentApi'
+import { useRoute } from 'vue-router'
 import { useFlashStore } from '../stores/flashStore'
 
-import Title from '../components/Title.vue'
+const route = useRoute()
+
+let establishmentId
+
+if (route.params.establishmentId) {
+  establishmentId = route.params.establishmentId
+}
 
 const flashStore = useFlashStore()
 
@@ -19,17 +26,11 @@ const establishment = ref({
   dpf_score: 0,
 })
 
-async function addEstablishment() {
-  const response = await supabase
-    .from('establishment')
-    .insert([establishment.value])
-
-    console.log(response)
-
-    if (response.status === 201) {
-        flashStore.setFlash('Establishment added successfully!', 'success')
-        console.log('Establishment added successfully!')
-        establishment.value = {
+async function handleFormSubmit() {
+  if (!establishmentId) {
+    const result = await addEstablishment(establishment.value, flashStore)
+  if (result.success) {
+      establishment.value = {
         name: '',
         street: '',
         city: '',
@@ -39,24 +40,41 @@ async function addEstablishment() {
         drinks_score: 0,
         interiors_score: 0,
         dpf_score: 0,
+      }
     }
-    } else {
-        flashStore.setFlash('Establishment was not added', 'error')
-        console.error("*****", response.error)
+  } else if (establishmentId) {
+    const result = await updateEstablishment(establishment.value, establishmentId, flashStore)
+    if (result.success) {
+      establishment.value = {
+        name: '',
+        street: '',
+        city: '',
+        county: '',
+        postcode: '',
+        ambience_score: 0,
+        drinks_score: 0,
+        interiors_score: 0,
+        dpf_score: 0,
+      }
     }
+  }
 }
 
-function showSuccessMessage() {
-  flashStore.setFlash('Operation was successful!', 'success')
+if (establishmentId) {
+  onMounted(async () => {
+    if (establishmentId) {
+      const result = await getEstablishment(establishmentId)
+      if (result.success) {
+        establishment.value = result.establishment
+      }
+    }
+  })
 }
 </script>
 
 <template>
     <div>
-        <Title msg="Admin" />
-    </div>
-    <div>
-        <form @submit.prevent="addEstablishment" class="max-w-lg mx-auto p-4 bg-gray-600 rounded shadow-md admin-container">
+        <form @submit.prevent="handleFormSubmit" class="max-w-lg mx-auto p-4 bg-gray-600 rounded shadow-md admin-container">
             <h2 class="text-lg font-bold mb-4 deadpubs-yellow">Add Establishment</h2>
             <div class="mb-4">
                 <label for="name" class="block text-sm font-bold mb-2">Name:</label>

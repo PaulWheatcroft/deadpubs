@@ -4,6 +4,7 @@ import supabase from '../api/client'
 
 export const useAuthStore = defineStore('auth', () => {
   const isLoggedIn = ref(false)
+  
 
   async function checkAuthStatus() {
     const { data: { user } } = await supabase.auth.getUser()

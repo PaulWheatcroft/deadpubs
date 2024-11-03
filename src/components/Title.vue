@@ -18,7 +18,7 @@ const count = ref(0)
     font-weight: 400;
     font-style: normal;
     font-style: italic;
-    font-size: 4rem;
+    font-size: 2.5rem;
     text-transform: uppercase;
     color: rgb(228, 199, 56);
 }

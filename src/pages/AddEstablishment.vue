@@ -6,7 +6,7 @@ import AdminForm from '../components/AdminForm.vue'
 
 <template>
     <div>
-        <Title msg="Admin" />
+        <Title msg="Add Establishment" />
     </div>
-    <AdminForm />
+    <AdminForm establishmentId="" />
 </template>

@@ -57,7 +57,7 @@ onMounted(async () => {
       <button @click="getEstablishmentsOrderDPF" class="p-2 bg-orange-400 text-gray-700 rounded md:hover:underline sm:min-w-[200px]"><i class="fa-solid fa-wand-magic-sparkles"></i> Order DPF <i v-if="sortType === 'dpf'" class="fa-regular fa-hand-point-left"></i></button>
       <button @click="getEstablishmentsOrderByTotalScore" class="p-2 bg-orange-500 text-gray-700 rounded md:hover:underline sm:min-w-[200px]"><i class="fa-solid fa-calculator"></i> Order Total <i v-if="sortType === 'total'" class="fa-regular fa-hand-point-left"></i></button>
     </div>
-    <Establishment v-for="establishment in establishments" :key="establishment.id" :establishment="establishment" />
+    <Establishment v-for="establishment in establishments" :key="establishment.id" :establishment="establishment" isLoggedIn=isLoggedIn />
 </template>
 
 <style scoped>

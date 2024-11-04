@@ -33,12 +33,14 @@ const count = ref(0)
     font-weight: 400;
     font-style: normal;
     font-style: italic;
-    font-size: 2.5rem;
+    font-size: 4rem;
     text-transform: uppercase;
     color: rgb(228, 199, 56);
+    mix-blend-mode: luminosity;
 }
 h1 {
   top: -10px;
   text-align: center;
+  text-shadow: 1px 1px rgb(0, 0, 0);
 }
 </style>

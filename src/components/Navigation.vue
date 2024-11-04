@@ -8,11 +8,18 @@ defineProps({
   isLoggedIn: Boolean,
 })
 
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth'})
+}
+
 </script>
 
 <template>
     <nav class="mb-4 navbar bg-rose-950">
-        <RouterLink to="/" class="mr-4">Home</RouterLink>
+        <RouterLink to="/" @click="scrollToTop" class="mr-4">Home</RouterLink>
         <RouterLink to="/admin" class="mr-4" v-if="isLoggedIn">Admin</RouterLink>
         <button @click="authStore.signOut" class="mr-4" v-if="isLoggedIn">SIGN OUT</button>
         <RouterLink to="/sign-in" v-else>Sign In</RouterLink>

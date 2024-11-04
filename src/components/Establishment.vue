@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { Establishment } from '../types/establishment'
 import { RouterLink, RouterView } from 'vue-router'
+import { useAuthStore } from '../stores/authStore'
 
 const props = defineProps<{
   establishment: Establishment,
-  isLoggedIn: Boolean,
 }>()
+
+const authStore = useAuthStore()
 </script>
 
 <template>
@@ -34,7 +36,7 @@ const props = defineProps<{
             <p class="">DPF: {{ establishment.dpf_score }}</p>
         </div>
     </div>
-    <div v-if="isLoggedIn">
+    <div v-if="authStore.isLoggedIn" class="mt-4">
       <RouterLink :to="`/admin/${establishment.id}/edit`" class="p-2 bg-orange-400 text-gray-700 rounded md:hover:underline sm:min-w-[200px]"><i class="fa-solid fa-square-pen"></i> Edit</RouterLink>
     </div>
   </div>

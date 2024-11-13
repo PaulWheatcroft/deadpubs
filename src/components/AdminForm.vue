@@ -45,17 +45,6 @@ async function handleFormSubmit() {
   } else if (establishmentId) {
     const result = await updateEstablishment(establishment.value, establishmentId, flashStore)
     if (result.success) {
-      establishment.value = {
-        name: '',
-        street: '',
-        city: '',
-        county: '',
-        postcode: '',
-        ambience_score: 0,
-        drinks_score: 0,
-        interiors_score: 0,
-        dpf_score: 0,
-      }
     }
   }
 }

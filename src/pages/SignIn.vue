@@ -44,7 +44,7 @@ async function seeCurrentUser() {
         <Title msg="Sign In" />
     </div>
     <div>
-        <form @submit.prevent="login" class="max-w-md mx-auto p-4 signin-container bg-gray-600 ml-2 mr-2">
+        <form @submit.prevent="login" class="max-w-xs sm:max-w-md md:max-w-3xl mx-auto p-4 signin-container bg-gray-600">
             <h2 class="text-lg font-bold mb-4">Login</h2>
             <div class="mb-4">
                 <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
@@ -56,9 +56,6 @@ async function seeCurrentUser() {
             </div>
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</button>
         </form>
-        <div class="max-w-md mx-auto p-4">
-            <button type="submit" @click="seeCurrentUser" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">See Current User</button>
-        </div>
     </div>
 </template>
 

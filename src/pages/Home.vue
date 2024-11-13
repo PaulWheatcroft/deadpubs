@@ -6,7 +6,7 @@ import Establishments from '../components/Establishments.vue'
 
 <template>
     <div>
-        <Hero msg="DEADPUBS" />
+        <Hero msg="DEAD PUBS" />
     </div>
     <Establishments />
 </template>

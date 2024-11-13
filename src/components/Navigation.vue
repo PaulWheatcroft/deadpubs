@@ -19,10 +19,10 @@ function scrollToTop() {
 
 <template>
     <nav class="mb-4 navbar bg-rose-950">
-        <RouterLink to="/" @click="scrollToTop" class="mr-4">Home</RouterLink>
-        <RouterLink to="/admin" class="mr-4" v-if="isLoggedIn">Admin</RouterLink>
-        <button @click="authStore.signOut" class="mr-4" v-if="isLoggedIn">SIGN OUT</button>
-        <RouterLink to="/sign-in" v-else>Sign In</RouterLink>
+        <RouterLink to="/" @click="scrollToTop" class="mr-4"><i class="fa-regular fa-hand-point-up"></i> {{ (isLoggedIn) ? 'Home' : 'Top' }}</RouterLink>
+        <RouterLink to="/admin" class="mr-4" v-if="isLoggedIn"><i class="fa-solid fa-user-tie"></i> Admin</RouterLink>
+        <button @click="authStore.signOut" class="mr-4" v-if="isLoggedIn"><i class="fa-solid fa-right-from-bracket"></i> SIGN OUT</button>
+        <a href="https://www.tiktok.com/@deadpubs" target="_blank" class="mr-4"><i class="fa-brands fa-tiktok"></i> TikTok</a>
     </nav> 
 </template>
 

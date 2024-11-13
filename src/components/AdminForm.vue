@@ -27,6 +27,8 @@ const establishment = ref({
 })
 
 async function handleFormSubmit() {
+  const totalScore = establishment.value.ambience_score + establishment.value.drinks_score + establishment.value.interiors_score + establishment.value.dpf_score
+  establishment.value.total_score = totalScore
   if (!establishmentId) {
     const result = await addEstablishment(establishment.value, flashStore)
   if (result.success) {
